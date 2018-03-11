@@ -13,8 +13,9 @@ void SistemaDeAritimeticaDePontoFlutuante(int precisao, int limLower, int limUpp
 
 	float arrayValores[ maxValores ];
 	
-	ostringstream arrayOss[ maxValores ];
-	//istringstream arrayIss[ maxValores ];
+	stringstream arrayConcat[ maxValores ];
+
+	string arrayString[ maxValores ];
 
 	int indice = 0;
 
@@ -28,19 +29,22 @@ void SistemaDeAritimeticaDePontoFlutuante(int precisao, int limLower, int limUpp
 
 				for( int z = limLower ; z <= limUpper ; z++ ){
 
-					arrayOss[indice] << i << j << k;
+					// CONCATENA OS VALORES NO ARRAY
+					arrayConcat[indice] << i << j << k;
 
-					istringstream iss(arrayOss[indice].str());
+					// ESCREVE VALORES EM UM ARRAY DE STRING
+					arrayString[indice] = arrayConcat[indice].str();
 
-					iss >> arrayValores[indice];
+					// CONVERTE VALOR DO ARRAY DE STRING EM INT E ESCREVE NO ARRAY DE FLOAT
+					arrayValores[indice] = atoi( arrayString[indice].c_str() );
 
-					arrayValores[indice] = ((arrayValores[indice])/1000)*(pow(10,z)) ;
+					// COMPUTA O VALOR FINAL E ESCREVE NO ARRAY DE FLOAT
+					arrayValores[indice] = ((arrayValores[indice])/1000) * (pow(10,z)) ;
 
+					// ESCREVE NA TELA O VALOR
 					cout << arrayValores[indice] << "  ";
 
-					if ( j = 1 )
-						break;
-
+					// INCREMETA O INDICE
 					indice++;
 
 					//cout << "0." << i << j << k << "*10^" << z << "  "; 
